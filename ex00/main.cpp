@@ -15,8 +15,9 @@
 int main( void ) {
 int a = 2;
 int b = 3;
+std::cout <<"a before swaping: "<< a <<", b before swaping: "<< b << std::endl;
 ::swap( a, b );
-std::cout << "a = " << a << ", b = " << b << std::endl;
+std::cout << "a after swaping: " << a <<  ", b after swaping: " << b << std::endl;
 std::cout << "min( a, b ) = " << ::min( a, b ) << std::endl;
 std::cout << "max( a, b ) = " << ::max( a, b ) << std::endl;
 std::string c = "chaine1";

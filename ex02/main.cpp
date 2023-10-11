@@ -3,51 +3,47 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: caeduard <caeduard@student.42.fr>          +#+  +:+       +#+        */
+/*   By: caeduard <caeduard>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 15:26:50 by caeduard          #+#    #+#             */
-/*   Updated: 2023/10/05 15:44:18 by caeduard         ###   ########.fr       */
+/*   Updated: 2023/10/07 17:31:51 by caeduard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <iostream>
 #include "Array.hpp"
 
-int main() {
-    // Test default constructor
-    Array<int> a1;
-    std::cout << "a1 size: " << a1.size() << std::endl;
+int main(int, char**)
+{
+    
+    std::cout << "Test constructor with parameter" << std::endl;
+    Array<int> b(21);
+    std::cout << "b.size() = " << b._size() << std::endl;
 
-    // Test constructor with size parameter
-    Array<int> a2(5);
-    std::cout << "a2 size: " << a2.size() << std::endl;
-    for (unsigned int i = 0; i < a2.size(); ++i) {
-        std::cout << "a2[" << i << "]: " << a2[i] << std::endl;
+    std::cout << "Test copy constructor" << std::endl;
+    Array<int> c(b);
+    std::cout << "c.size() = " << c._size() << std::endl;
+
+    std::cout << "Test assignment operator" << std::endl;
+    Array<int> a = c;
+    std::cout << "a.size() = " << a._size() << std::endl;
+
+    std::cout << "Test access with [] operator" << std::endl;
+    Array<int> d(3);
+    for (unsigned int i = 0; i < d._size(); ++i)
+    {
+        d[i] = i;
+        std::cout << "d[" << i << "] = " << d[i] << std::endl;
     }
-
-    // Test copy constructor
-    Array<int> a3(a2);
-    std::cout << "a3 size: " << a3.size() << std::endl;
-    for (unsigned int i = 0; i < a3.size(); ++i) {
-        std::cout << "a3[" << i << "]: " << a3[i] << std::endl;
+    
+    std::cout << "Test access with [] operator out of bounds" << std::endl;
+    try
+    {
+        d[3] = 3;
     }
-
-    // Test assignment operator
-    Array<int> a4 = a3;
-    std::cout << "a4 size: " << a4.size() << std::endl;
-    for (unsigned int i = 0; i < a4.size(); ++i) {
-        std::cout << "a4[" << i << "]: " << a4[i] << std::endl;
+    catch (std::exception &e)
+    {
+        std::cout << e.what() << std::endl;
     }
-
-    // Test subscript operator
-    a4[2] = 42;
-    std::cout << "a4[2]: " << a4[2] << std::endl;
-
-    // Test out of bounds exception
-    try {
-        a4[10] = 99;
-    } catch (std::exception& e) {
-        std::cout << "Exception caught: " << e.what() << std::endl;
-    }
-
     return 0;
 }
